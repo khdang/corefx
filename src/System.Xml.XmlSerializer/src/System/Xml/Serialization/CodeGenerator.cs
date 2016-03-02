@@ -7,6 +7,12 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata.Ecma335.Blobs;
+using System.Reflection.PortableExecutable;
 
 #if !NET_NATIVE
 namespace System.Xml.Serialization

@@ -1,4 +1,4 @@
-{
+﻿{
   "frameworks": {
     "netstandard1.3": {
       "dependencies": {
@@ -32,5 +32,9 @@
         "Microsoft.TargetingPack.NETFramework.v4.6": "1.0.1"
       }
     }
+  },
+  "dependencies": {
+    "System.Collections.Immutable": "1.2.0-rc3-23901",
+    "System.Reflection.Metadata": "1.2.0-rc3-23901"
   }
 }
