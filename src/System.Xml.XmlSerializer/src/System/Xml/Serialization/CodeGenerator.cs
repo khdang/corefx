@@ -2,12 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
-
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Diagnostics;
+using System.Xml.Extensions;
+using Stack = System.Collections.Generic.Stack<object>;
 using System.Collections.Immutable;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
@@ -17,21 +19,6 @@ using System.Reflection.PortableExecutable;
 #if !NET_NATIVE
 namespace System.Xml.Serialization
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Xml;
-    using System.Reflection;
-    using System.Reflection.Emit;
-    using System.IO;
-    using System.Security;
-    using System.Text.RegularExpressions;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Xml.Extensions;
-    using Stack = System.Collections.Generic.Stack<object>;
-
     internal class CodeGenerator
     {
         internal static BindingFlags InstanceBindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;

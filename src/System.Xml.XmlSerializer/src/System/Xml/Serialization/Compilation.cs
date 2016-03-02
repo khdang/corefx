@@ -2,29 +2,19 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Collections;
+using System.Security;
+using System.Collections.Generic;
+using System.Xml.Extensions;
+// this[key] api throws KeyNotFoundException
+using Hashtable = System.Collections.InternalHashtable;
+using Evidence = System.Object;
+using XmlDeserializationEvents = System.Object;
+
 namespace System.Xml.Serialization
 {
-    using System.Reflection;
-    using System.Reflection.Emit;
-    using System.Collections;
-    using System.IO;
-    using System;
-    using System.Text;
-    using System.Xml;
-    using System.Threading;
-    using System.Security;
-    using System.Diagnostics;
-    using System.CodeDom.Compiler;
-    using System.Globalization;
-    using System.Collections.Generic;
-    using System.Xml.Extensions;
-    // this[key] api throws KeyNotFoundException
-    using Hashtable = System.Collections.InternalHashtable;
-    using Evidence = System.Object;
-    using CompilerParameters = System.Object;
-    using XmlSerializerCompilerParameters = System.Object;
-    using XmlDeserializationEvents = System.Object;
-
     internal class TempAssembly
     {
         internal const string GeneratedAssemblyNamespace = "Microsoft.Xml.Serialization.GeneratedAssembly";

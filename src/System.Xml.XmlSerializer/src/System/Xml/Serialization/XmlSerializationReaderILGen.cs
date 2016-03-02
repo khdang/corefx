@@ -2,25 +2,24 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Security;
+using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Extensions;
+using Hashtable = System.Collections.Generic.Dictionary<object, object>;
+using XmlSchema = System.ServiceModel.Dispatcher.XmlSchemaConstants;
 
 #if !NET_NATIVE
 namespace System.Xml.Serialization
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Reflection;
-    using System.Reflection.Emit;
-    using System.Security;
-    using System.Text.RegularExpressions;
-    using System.Xml;
-    using System.Xml.Schema;
-    using System.Xml.Extensions;
-    using Hashtable = System.Collections.Generic.Dictionary<object, object>;
-    using XmlSchema = System.ServiceModel.Dispatcher.XmlSchemaConstants;
-
     internal class XmlSerializationReaderILGen : XmlSerializationILGen
     {
         private InternalHashtable _idNames = new InternalHashtable();

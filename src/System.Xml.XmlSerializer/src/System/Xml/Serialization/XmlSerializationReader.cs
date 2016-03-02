@@ -4,25 +4,10 @@
 
 namespace System.Xml.Serialization
 {
-    using System.IO;
     using System;
-    using System.Security;
     using System.Collections;
-    using System.Reflection;
-    using System.Text;
     using System.Xml;
-    using System.Xml.Schema;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.CodeDom.Compiler;
-    using System.Diagnostics;
-    using System.Threading;
-    using System.Collections.Generic;
-    using System.Reflection.Emit;
-    using System.Text.RegularExpressions;
     using System.Xml.Extensions;
-    using Hashtable = System.Collections.Generic.Dictionary<object, object>;
-    using DictionaryEntry = System.Collections.Generic.KeyValuePair<object, object>;
     using XmlSchema = System.ServiceModel.Dispatcher.XmlSchemaConstants;
     using XmlDeserializationEvents = System.Object;
 
