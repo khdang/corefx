@@ -4,7 +4,6 @@
 
 using System.Diagnostics;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using System.Xml.Extensions;
 
@@ -97,9 +96,7 @@ namespace System.Xml.Serialization
                     Type eType = get_Item.ReturnType;
                     if (CodeGenerator.IsNullableGenericType(eType))
                     {
-                        LocalBuilder localTmp = ILG.GetTempLocal(eType);
-                        ILG.Stloc(localTmp);
-                        ILG.Ldloca(localTmp);
+                        ILG.GetTempLocalAddress(eType);
                         ConvertNullableValue(eType, elementType);
                     }
                     else if ((elementType != null) && !(eType.IsAssignableFrom(elementType) || elementType.IsAssignableFrom(eType)))

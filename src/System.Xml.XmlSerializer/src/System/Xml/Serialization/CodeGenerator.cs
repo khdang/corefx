@@ -163,6 +163,13 @@ namespace System.Xml.Serialization
             return localTmp;
         }
 
+        internal void GetTempLocalAddress(Type obj)
+        {
+            LocalBuilder localTmp = GetTempLocal(obj);
+            Stloc(localTmp);
+            Ldloca(localTmp);
+        }
+
         internal Type GetVariableType(object var)
         {
             if (var is ArgBuilder)
