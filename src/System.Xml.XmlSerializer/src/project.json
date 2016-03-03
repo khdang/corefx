@@ -21,20 +21,22 @@
         "System.Threading": "4.0.10",
         "System.Threading.Tasks": "4.0.10",
         "System.Xml.ReaderWriter": "4.0.10",
-        "System.Xml.XmlDocument": "4.0.0"
+        "System.Xml.XmlDocument": "4.0.0",
+        "System.Reflection.Metadata": "1.2.0-rc3-23901"
       },
       "imports": [
         "dotnet5.4"
       ]
+    },
+    "netstandard1.0": {
+      "dependencies": {
+        "System.Collections.Immutable": "1.2.0-rc3-23901"
+      }
     },
     "net46": {
       "dependencies": {
         "Microsoft.TargetingPack.NETFramework.v4.6": "1.0.1"
       }
     }
-  },
-  "dependencies": {
-    "System.Collections.Immutable": "1.2.0-rc3-23901",
-    "System.Reflection.Metadata": "1.2.0-rc3-23901"
   }
 }
