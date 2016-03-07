@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Reflection.Emit;
+//using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using System.Xml.Extensions;
 using Hashtable = System.Collections.Generic.Dictionary<object, object>;

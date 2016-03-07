@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
 using System.Reflection;
-using System.Reflection.Emit;
+//using System.Reflection.Emit;
 using System.Diagnostics;
 using System.Xml.Extensions;
 using Stack = System.Collections.Generic.Stack<object>;
@@ -31,7 +31,7 @@ namespace System.Xml.Serialization
 
         private TypeBuilder _typeBuilder;
         private MethodBuilder _methodBuilder;
-        private ILGenerator _ilGen;
+        private InstructionEncoder _ilGen;
         private Dictionary<string, ArgBuilder> _argList;
         private LocalScope _currentScope;
         // Stores a queue of free locals available in the context of the method, keyed by
@@ -1201,12 +1201,12 @@ namespace System.Xml.Serialization
 
         internal Label DefineLabel()
         {
-            return _ilGen.DefineLabel();
+            return new Label();
         }
 
         internal void MarkLabel(Label label)
         {
-            _ilGen.MarkLabel(label);
+            label.MarkLabel(_ilGen);
         }
 
         internal void Nop()
@@ -1760,88 +1760,6 @@ namespace System.Xml.Serialization
             }
 #endif
         }
-    }
-
-    internal class AssemblyBuilder
-    {
-        private string name;
-        PEBuilder peBuilder;
-
-        BlobBuilder ilBuilder;
-        BlobBuilder metadataBlobBuilder;
-        BlobBuilder mappedFieldDataBuilder;
-        BlobBuilder managedResourceDataBuilder;
-
-        MetadataBuilder metadata;
-
-        MethodDefinitionHandle mainMethodDef;
-
-        public AssemblyBuilder(string name)
-        {
-            this.name = name;
-
-            peBuilder = new PEBuilder(
-            machine: 0,
-            sectionAlignment: 0x2000,
-            fileAlignment: 0x200,
-            imageBase: 0x00400000,
-            majorLinkerVersion: 0x30, // (what is ref.emit using?)
-            minorLinkerVersion: 0,
-            majorOperatingSystemVersion: 4,
-            minorOperatingSystemVersion: 0,
-            majorImageVersion: 0,
-            minorImageVersion: 0,
-            majorSubsystemVersion: 4,
-            minorSubsystemVersion: 0,
-            subsystem: Subsystem.WindowsCui,
-            dllCharacteristics: DllCharacteristics.DynamicBase | DllCharacteristics.NxCompatible | DllCharacteristics.NoSeh | DllCharacteristics.TerminalServerAware,
-            imageCharacteristics: Characteristics.ExecutableImage,
-            sizeOfStackReserve: 0x00100000,
-            sizeOfStackCommit: 0x1000,
-            sizeOfHeapReserve: 0x00100000,
-            sizeOfHeapCommit: 0x1000);
-
-            ilBuilder = new BlobBuilder();
-            metadataBlobBuilder = new BlobBuilder();
-            mappedFieldDataBuilder = new BlobBuilder();
-            managedResourceDataBuilder = new BlobBuilder();
-
-            metadata = new MetadataBuilder();
-        }
-
-        public void WriteContentTo(Stream peStream)
-        {
-            var peDirectoriesBuilder = new PEDirectoriesBuilder();
-
-            peBuilder.AddManagedSections(
-                peDirectoriesBuilder,
-                new TypeSystemMetadataSerializer(metadata, "v4.0.30319", isMinimalDelta: false),
-                ilBuilder,
-                mappedFieldDataBuilder,
-                managedResourceDataBuilder,
-                nativeResourceSectionSerializer: null,
-                strongNameSignatureSize: 0,
-                entryPoint: mainMethodDef,
-                pdbPathOpt: null,
-                nativePdbContentId: default(ContentId),
-                portablePdbContentId: default(ContentId),
-                corFlags: CorFlags.ILOnly);
-
-            var peBlob = new BlobBuilder();
-            ContentId peContentId;
-            peBuilder.Serialize(peBlob, peDirectoriesBuilder, out peContentId);
-            peBlob.WriteContentTo(peStream);
-        }
-
-        internal void SetCustomAttribute(ConstructorInfo securityTransparentAttribute_ctor)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    internal class ModuleBuilder
-    {
-
     }
 }
 #endif

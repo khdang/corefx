@@ -151,7 +151,7 @@ namespace System.Xml.Serialization
             readerCodeGen.GenerateSerializerContract("XmlSerializerContract", xmlMappings, types, readerClass, readMethodNames, writerClass, writeMethodNames, serializers);
 
 
-            return writerType.GetTypeInfo().Assembly;
+            return assemblyBuilder.Assembly;
         }
 #endif
 

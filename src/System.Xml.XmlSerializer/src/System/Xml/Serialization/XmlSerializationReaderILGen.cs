@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
-using System.Reflection.Emit;
+//using System.Reflection.Emit;
 using System.Security;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -29,7 +29,7 @@ namespace System.Xml.Serialization
         private int _nextIdNumber = 0;
         private int _nextWhileLoopIndex = 0;
 
-        internal InternalHashtable Enums
+        internal InternalHashtable Enums  
         {
             get
             {
