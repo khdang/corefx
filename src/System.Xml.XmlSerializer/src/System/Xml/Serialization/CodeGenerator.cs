@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
 using System.Reflection;
-//using System.Reflection.Emit;
+using System.Reflection.Emit;
 using System.Diagnostics;
 using System.Xml.Extensions;
 using Stack = System.Collections.Generic.Stack<object>;
@@ -109,7 +109,6 @@ namespace System.Xml.Serialization
             MethodBuilder retVal = null;
             retVal = _methodBuilder;
             _methodBuilder = null;
-            _ilGen = null;
             _freeLocals = null;
             _blockStack = null;
             _whileStack = null;

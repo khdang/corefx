@@ -1,18 +1,17 @@
-﻿using System.Collections;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.Collections.Generic;
 using System.IO;
-using System.Globalization;
 using System.Reflection;
 using System.Diagnostics;
-using System.Xml.Extensions;
-using Stack = System.Collections.Generic.Stack<object>;
-using System.Collections.Immutable;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.Metadata.Ecma335.Blobs;
 using System.Reflection.PortableExecutable;
 
-namespace System.Xml.XmlSerialization
+namespace System.Xml.Serialization
 {
     internal class AssemblyBuilder
     {
@@ -113,17 +112,23 @@ namespace System.Xml.XmlSerialization
 
     }
 
-    internal sealed class LoadContext : AssemblyLoadContext
+    //internal sealed class LoadContext : AssemblyLoadContext
+    //{
+    //    internal LoadContext() { }
+    //    public new Assembly LoadFromStream(Stream assembly) => base.LoadFromStream(assembly);
+    //    public new Assembly LoadFromStream(Stream assembly, Stream assemblySymbols) => base.LoadFromStream(assembly, assemblySymbols);
+    //    public new Assembly LoadFromAssemblyPath(string assemblyPath) => base.LoadFromAssemblyPath(assemblyPath);
+
+    //    protected override Assembly Load(AssemblyName assemblyName)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
+
+    internal sealed class LoadContext
     {
         internal LoadContext() { }
-        public new Assembly LoadFromStream(Stream assembly) => base.LoadFromStream(assembly);
-        public new Assembly LoadFromStream(Stream assembly, Stream assemblySymbols) => base.LoadFromStream(assembly, assemblySymbols);
-        public new Assembly LoadFromAssemblyPath(string assemblyPath) => base.LoadFromAssemblyPath(assemblyPath);
-
-        protected override Assembly Load(AssemblyName assemblyName)
-        {
-            throw new NotImplementedException();
-        }
+        public Assembly LoadFromStream(Stream assembly) => null;        
     }
 
     internal class Label
@@ -144,7 +149,7 @@ namespace System.Xml.XmlSerialization
             }
             else
             {
-                WriteEndBlob(encoder.Builder.WriteByte((byte)(offset - encoder.Offset)));
+                WriteEndBlob(encoder.Builder.ReserveBytes(1), encoder.Offset);
             }
         }
 
