@@ -90,7 +90,7 @@ namespace System.Xml.Serialization
             string assemblyName = "Microsoft.GeneratedCode";
             AssemblyBuilder assemblyBuilder = CodeGenerator.CreateAssemblyBuilder(assemblyName);
             ConstructorInfo SecurityTransparentAttribute_ctor = typeof(SecurityTransparentAttribute).GetConstructor(
-                CodeGenerator.InstanceBindingFlags,
+                Globals.InstanceBindingFlags,
                 Array.Empty<Type>()
                 );
             assemblyBuilder.SetCustomAttribute(SecurityTransparentAttribute_ctor);

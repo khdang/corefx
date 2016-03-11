@@ -88,7 +88,7 @@ namespace System.Xml.Serialization
                     ILG.Load(varIA);
                     MethodInfo get_Item = varType.GetMethod(
                         "get_Item",
-                        CodeGenerator.InstanceBindingFlags,
+                        Globals.InstanceBindingFlags,
                         new Type[] { typeof(Int32) }
                         );
                     Debug.Assert(get_Item != null);
@@ -197,7 +197,7 @@ namespace System.Xml.Serialization
             {
                 MethodInfo Nullable_get_Value = nullableType.GetMethod(
                     "get_Value",
-                    CodeGenerator.InstanceBindingFlags,
+                    Globals.InstanceBindingFlags,
                     Array.Empty<Type>()
                     );
                 ILG.Call(Nullable_get_Value);

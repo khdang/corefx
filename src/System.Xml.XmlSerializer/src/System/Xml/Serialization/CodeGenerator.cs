@@ -22,13 +22,6 @@ namespace System.Xml.Serialization
 {
     internal class CodeGenerator
     {
-        internal static BindingFlags InstanceBindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-        internal static BindingFlags StaticBindingFlags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
-        internal static MethodAttributes PublicMethodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig;
-        internal static MethodAttributes PublicOverrideMethodAttributes = MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.HideBySig;
-        internal static MethodAttributes ProtectedOverrideMethodAttributes = MethodAttributes.Family | MethodAttributes.Virtual | MethodAttributes.HideBySig;
-        internal static MethodAttributes PrivateMethodAttributes = MethodAttributes.Private | MethodAttributes.HideBySig;
-
         private TypeBuilder _typeBuilder;
         private MethodBuilder _methodBuilder;
         private InstructionEncoder _ilGen;
@@ -312,7 +305,7 @@ namespace System.Xml.Serialization
 #endif
                     MethodInfo ICollection_get_Count = typeof(ICollection).GetMethod(
                           "get_Count",
-                          CodeGenerator.InstanceBindingFlags,
+                          Globals.InstanceBindingFlags,
                           Array.Empty<Type>()
                           );
                     Call(ICollection_get_Count);
@@ -825,7 +818,7 @@ namespace System.Xml.Serialization
                         break;
                     case TypeCode.Decimal:
                         ConstructorInfo Decimal_ctor = typeof(Decimal).GetConstructor(
-                             CodeGenerator.InstanceBindingFlags,
+                             Globals.InstanceBindingFlags,
                              new Type[] { typeof(Int32), typeof(Int32), typeof(Int32), typeof(Boolean), typeof(Byte) }
                              );
                         int[] bits = Decimal.GetBits((decimal)o);
@@ -838,7 +831,7 @@ namespace System.Xml.Serialization
                         break;
                     case TypeCode.DateTime:
                         ConstructorInfo DateTime_ctor = typeof(DateTime).GetConstructor(
-                            CodeGenerator.InstanceBindingFlags,
+                            Globals.InstanceBindingFlags,
                             new Type[] { typeof(Int64) }
                             );
                         Ldc(((DateTime)o).Ticks); // ticks
